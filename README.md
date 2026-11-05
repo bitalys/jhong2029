@@ -1,42 +1,28 @@
-# Jackson Hong Portfolio — Netlify / GitHub
+# Jackson Hong Portfolio CMS
 
-A static, multi-page editorial portfolio for Jackson Hong.
+This is the proposed long-term architecture: React/Vite on Netlify + Supabase Auth/Database/Storage.
 
-## Pages
-- `index.html` — Home
-- `about.html` — About
-- `ideas.html` — Ideas & Writing
-- `athletics.html` — Swimming / Golf / Soccer
-- `projects.html` — Projects / Travel
-- `journey.html` — Timeline
-- `cv.html` — CV
+## What it does
+- Public editorial portfolio
+- Admin login at `/admin`
+- Create/edit/delete posts
+- Draft vs Published
+- Featured vs non-featured
+- Athletics taxonomy: Swimming / Golf / Soccer
+- Category management
+- Image upload to Supabase Storage
+- Post detail pages
+- Homepage automatically shows Published + Featured posts
+- Academic year field so G10/G11/G12 can coexist
 
-## Deploy on Netlify
-1. Create a GitHub repository.
-2. Upload the contents of this folder.
-3. In Netlify, choose **Add new project → Import an existing project → GitHub**.
-4. Select the repository.
-5. Build command: leave blank.
-6. Publish directory: `.`
-7. Deploy.
+## Setup
+1. Create a Supabase project.
+2. Run `supabase/schema.sql` in Supabase SQL Editor.
+3. Create one admin user in Supabase Authentication.
+4. Copy `.env.example` to `.env` and add the project URL + anon key.
+5. `npm install && npm run dev`.
+6. Connect GitHub repo to Netlify. Build: `npm run build`; Publish: `dist`.
+7. Add the two VITE environment variables in Netlify.
 
-## Add Jackson's real photos
-Put files in `/assets/` using these names:
-- `hero.jpg`
-- `swimming.jpg`
-- `travel-hero.jpg`
-- `travel-1.jpg`
-- `travel-2.jpg`
-- `travel-3.jpg`
-
-The current design uses tasteful placeholders until the real photos are added.
-
-## Add final CV
-Place the verified PDF at:
-`assets/Jackson_Hong_CV.pdf`
-
-## Update Jetsetter
-Edit `js/main.js` and replace the `jetsetter` URL with Jackson's actual YouTube/channel URL.
-
-## Before publishing
-Verify official wording and dates for all awards, records, selection results, school affiliations and future plans. The site intentionally labels items that still need verification.
+## Recommended production hardening
+The sample RLS currently gives authenticated users broad write access to simplify the first setup. Before launch, restrict write policies to your admin user(s). The next UI refinement should add a visual media picker, drag-and-drop gallery, rich text editor, homepage drag-and-drop ordering, and separate Awards/Timeline editors.
