@@ -26,3 +26,7 @@ This is the proposed long-term architecture: React/Vite on Netlify + Supabase Au
 
 ## Recommended production hardening
 The sample RLS currently gives authenticated users broad write access to simplify the first setup. Before launch, restrict write policies to your admin user(s). The next UI refinement should add a visual media picker, drag-and-drop gallery, rich text editor, homepage drag-and-drop ordering, and separate Awards/Timeline editors.
+
+
+## Admin login
+The admin page uses a PIN-only login. The initial PIN is `1111` when `ADMIN_PIN=1111` is configured in Netlify. The PIN is checked by a Netlify server function and is not bundled into the browser code. Also set `ADMIN_SESSION_SECRET`, `SUPABASE_URL`, and `SUPABASE_SERVICE_ROLE_KEY` as Netlify environment variables.
